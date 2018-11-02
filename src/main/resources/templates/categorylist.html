@@ -5,6 +5,10 @@
     <title>Title</title>
 </head>
 <body>
-     <div th:replace="base :: navlinks"></div>
+<div th:replace="base :: navlinks"></div>
+<h2> Categories List</h2>
+<div th:each="category: ${categories}">
+    <span th:text="${category.name}"></span>
+</div>
 </body>
 </html>

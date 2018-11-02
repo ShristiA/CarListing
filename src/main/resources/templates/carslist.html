@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<div th:replace="base :: navlinks">
+
+    <h2>CAR LIST</h2>
+
+    <P th:each="car : ${cars}">
+        <span th:text="${car.manufacture}"></span>
+        <span th:text="${car.model}"></span>
+        <span th:text="${car.year}"></span>
+        <span th:text="${car.msrp}"></span>
+        <span th:text="${car.category.name}"></span>
+        <a th:href="@{/update/{id}(id=${car.id})}">Update</a>
+        <a th:href="@{/detail/{id}(id=${car.id})}">Detail</a>
+        <a th:href="@{/delete/{id}(id=${car.id})}">Delete</a>
+    </P>
+</div>
+</body>
+</html>

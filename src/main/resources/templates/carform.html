@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml" xmlns="http://www.w3.org/1999/html">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<div th:replace ="base :: navlinks"></div>
+<form action="#" th:action="@{/addCar}" th:object="${car}" method="post">
+    <input type="hidden" th:field="*{id}" />
+   Manufacturer: <input type="text" name="manufacture" th:field="*{manufacture}" />
+    Model: <input type="text" name="model" th:field="*{model}" />
+    Year: <input type="number" name="year" th:field="*{year}" />
+    mrsp: <input type="number" name="mrsp" th:field="*{msrp}" />
+    Category: <select name ="category" th:field="*{category}">
+    <option th:each="category : ${categories}"
+            th:value="${category.id}"
+            th:text="${category.name}" />
+</select><br />
+
+    <input type="submit" value="submit">
+
+</form>
+</body>
+</html>

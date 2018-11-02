@@ -1,8 +1,5 @@
 package com.example.demo;
 
-import com.example.demo.Brand;
-import org.hibernate.annotations.Fetch;
-
 import javax.persistence.*;
 import java.util.Set;
 
@@ -10,15 +7,17 @@ import java.util.Set;
 
 public class Car {
 
-        @Id
-        @GeneratedValue(strategy = GenerationType.AUTO)
-        private long id;
-        private String manufacture;
-        private String model;
-        private int year;
-        private  double msrp;
-        @OneToMany(mappedBy = "brand", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
-        public Set<Brand> brands;
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    private long id;
+    private String manufacture;
+    private String model;
+    private int year;
+    private double msrp;
+
+    @ManyToOne(fetch = FetchType.EAGER)
+    @JoinColumn(name = "category_id")
+    private Category category;
 
     public long getId() {
         return id;
@@ -60,12 +59,11 @@ public class Car {
         this.msrp = msrp;
     }
 
-    public Set<Brand> getBrands() {
-        return brands;
+    public Category getCategory() {
+        return category;
     }
 
-    public void setBrands(Set<Brand> brands) {
-        this.brands = brands;
+    public void setCategory(Category category) {
+        this.category = category;
     }
 }
-
